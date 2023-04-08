@@ -1,0 +1,53 @@
+<div class="p-5">
+    <div class=" my-3 d-flex align-items-center justify-content-between w-100">
+        <div class="col-md-3 d-flex align-items-center">
+            <span> Filter:</span>
+            <input class="form-control mx-3" type="text" placeholder="Search" (change)="filterElement($event)" />
+        </div>
+        <div>
+            <button class="btn btn-sm btn-primary" (click)="openModalAjout(modalAjout)"> Ajouter </button>
+        </div>
+    </div>
+    <div>
+
+        <!-- start shared table  -->
+        <app-shared-table *ngIf="!progress" [ListPosts]="postsList" [displayedColumnsLabels]="displayedColumnsLabels" [displayedColumns]="displayedColumns" (modifierPost)="updatePost($event,modalAjout)" (deletePostEvent)="deletePost($event, deleteModal)"></app-shared-table>
+        <div class="text-center" *ngIf="progress">
+            <!-- <mat-spinner></mat-spinner> -->
+        </div>
+    </div>
+</div>
+
+<ng-template #modalAjout>
+    <div class="dialog-head bg-info p-2">
+        <div class="d-flex justify-content-between align-items-center">
+            <h2 class="text-white m-0"> {{mode}} Post</h2>
+            <button class="btn btn-trp btn-sm" (click)="cancelModal()">
+                <span class="material-icons text-white">close</span>
+            </button>
+        </div>
+    </div>
+    <div class="modal-body" [formGroup]="formPost">
+        <div class="form-group">
+            <span>Title <span class="text-danger">*</span></span>
+            <input class="form-control" placeholder="title" formControlName="title">
+            <small class="text-danger" *ngIf="formPost.get('title')?.touched && formPost.get('title')?.errors"> champs required</small>
+        </div>
+        <div class="form-group">
+            <span>Description <span class="text-danger">*</span></span>
+            <textarea class="form-control" formControlName="body"></textarea>
+            <small class="text-danger" *ngIf="formPost.get('body')?.touched && formPost.get('body')?.errors"> champs required</small>
+        </div>
+    </div>
+    <div class="modal-fouter d-flex justify-content-end p-3">
+        <button class="btn btn-sm btn-secondary mr-2" (click)="cancelModal()"> Annuler</button>
+        <button class="btn btn-sm btn-success" (click)="savePost()"> Enregistrer</button>
+    </div>
+</ng-template>
+
+<ng-template #cancel>
+    <app-confirmation-template (closeConfirm)="close()" (annulerConfirm)="cancelConfirm($event)"></app-confirmation-template>
+</ng-template>
+<ng-template #deleteModal>
+    <app-delete-template [title]="deleteTitle" (closeModal)="close()" (deleteConfirm)="confirmDelete()"></app-delete-template>
+</ng-template>
