@@ -4,6 +4,7 @@ import { ConfirmationTemplateComponent } from './confirmation-template/confirmat
 import { MatTableModule } from '@angular/material/table';
 import { DeleteTemplateComponent } from './delete-template/delete-template.component';
 import { SharedTableComponent } from './shared-table/shared-table.component';
+import { FieldErrorComponent } from './field-error/field-error.component';
 
 
 
@@ -11,7 +12,8 @@ import { SharedTableComponent } from './shared-table/shared-table.component';
   declarations: [
     DeleteTemplateComponent,
     ConfirmationTemplateComponent,
-    SharedTableComponent
+    SharedTableComponent,
+    FieldErrorComponent
   ],
   imports: [
     CommonModule,MatTableModule
@@ -19,7 +21,7 @@ import { SharedTableComponent } from './shared-table/shared-table.component';
   exports:[
     DeleteTemplateComponent,
     ConfirmationTemplateComponent,
-    SharedTableComponent
+    SharedTableComponent,FieldErrorComponent
 ]
 })
 export class SharedModule { }

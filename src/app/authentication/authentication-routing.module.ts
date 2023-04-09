@@ -1,7 +1,26 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { LoginComponent } from './login/login.component';
+import { AuthenticationComponent } from './authentication.component';
 
-const routes: Routes = [];
+const routes: Routes = [
+  {
+    path: '',
+    component:AuthenticationComponent,//can be removed, we are not going to put code in html file
+    children: [
+      {
+        path: '',
+        redirectTo: "login",
+        pathMatch: "full",
+      },
+      {
+        path: "login",
+        component:LoginComponent
+      }
+    ]
+
+  }
+];
 
 @NgModule({
   imports: [RouterModule.forChild(routes)],

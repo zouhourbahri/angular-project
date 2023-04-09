@@ -31,12 +31,12 @@
         <div class="form-group">
             <span>Title <span class="text-danger">*</span></span>
             <input class="form-control" placeholder="title" formControlName="title">
-            <small class="text-danger" *ngIf="formPost.get('title')?.touched && formPost.get('title')?.errors"> champs required</small>
+            <app-field-error [control]="getTitle()"></app-field-error>
         </div>
         <div class="form-group">
             <span>Description <span class="text-danger">*</span></span>
             <textarea class="form-control" formControlName="body"></textarea>
-            <small class="text-danger" *ngIf="formPost.get('body')?.touched && formPost.get('body')?.errors"> champs required</small>
+            <app-field-error [control]="getBody()"></app-field-error>
         </div>
     </div>
     <div class="modal-fouter d-flex justify-content-end p-3">

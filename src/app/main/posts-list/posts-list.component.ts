@@ -123,6 +123,12 @@ export class PostsListComponent implements OnInit {
           this.progress=false
         },200)
       }
+      getTitle (): FormControl{
+        return this.formPost.get('title') as FormControl
+      }
+      getBody (): FormControl{
+        return this.formPost.get('body') as FormControl
+      }
   ngOnDestroy():void{
   
   }

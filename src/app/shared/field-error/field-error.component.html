@@ -1,0 +1,9 @@
+<div *ngIf="control && control?.errors && control?.touched">
+    <!-- {{control?.errors | json}} -->
+    <small class="text-danger" *ngIf="control?.errors?.['minlength']">
+         La valeur de ce champs doit contenir au minimum 8 caractères</small>
+    <small class="text-danger" *ngIf="control?.errors?.['maxlength']">
+         La valeur de ce champs doit contenir au maximum 8 caractères</small>
+    <small class="text-danger" *ngIf="control?.errors?.['required']"> champs required</small>
+    <small class="text-danger" *ngIf="!control?.errors?.['required'] && control?.errors?.['pattern'].requiredPattern === '/^\\w+([\\.-]?\\w+)*@\\w+([\\.-]?\\w+)*(\\.\\w{2,3})+$/'"> Email invalid</small>
+</div>
