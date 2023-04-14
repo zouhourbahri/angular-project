@@ -12,6 +12,7 @@ import {MatPaginatorModule} from '@angular/material/paginator';
 import { AppRoutingModule } from "./app-routing.module";
 import { NavbarComponent } from './layout/navbar/navbar.component';
 // import {MatIconModule} from '@angular/material/icon';
+import { CookieService } from 'ngx-cookie-service';
 @NgModule({
   declarations: [
     AppComponent,
@@ -29,7 +30,7 @@ import { NavbarComponent } from './layout/navbar/navbar.component';
     MatPaginatorModule,
     
   ],
-  providers: [],
+  providers: [CookieService],
   bootstrap: [AppComponent],
   schemas:[CUSTOM_ELEMENTS_SCHEMA]
 })

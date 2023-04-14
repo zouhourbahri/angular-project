@@ -5,6 +5,7 @@ import { IPosts } from 'src/app/core/modeles/posts';
 import { PostsServiceService } from 'src/app/core/services/posts-service/posts-service.service';
 import { Subject } from 'rxjs';
 import { IDataStorage } from 'src/app/core/modeles/user';
+import { CookieService } from 'ngx-cookie-service';
 @Component({
   selector: 'app-posts-list',
   templateUrl: './posts-list.component.html',
@@ -21,7 +22,7 @@ export class PostsListComponent implements OnInit {
   displayedColumnsLabels: Array<string> = ['N°', 'Title', 'Description'];/* header of the table */
   displayedColumns: Array<string> = ['N°','title', 'body','actions'];/* body */
     constructor(private postsService:PostsServiceService, private dialog:MatDialog,
-       private formBuilder:FormBuilder) { }
+       private formBuilder:FormBuilder,private cookieService:CookieService) { }
     @ViewChild('cancel')  cancel: any;
     mode:string=""
     modalTitle:string=""
@@ -44,8 +45,9 @@ export class PostsListComponent implements OnInit {
       /* get data from localStorage */
       let data =JSON.parse(JSON.stringify(localStorage.getItem('token')))
       this.dataStorage=JSON.parse(data)
-      
-      
+      /* get data from cookies */
+      let cookieData =JSON.parse(JSON.stringify(this.cookieService.get('token')))
+      console.log('cookieData',JSON.parse(cookieData) );
     }
   
     ngAfterViewInit() {

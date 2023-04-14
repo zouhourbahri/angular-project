@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup } from '@angular/forms';
 import { Router } from '@angular/router';
+import { CookieService } from 'ngx-cookie-service';
 import { AuthenticationService } from 'src/app/core/services/authentication/authentication.service';
 
 @Component({
@@ -10,7 +11,7 @@ import { AuthenticationService } from 'src/app/core/services/authentication/auth
 })
 export class LoginComponent implements OnInit {
   loginForm!:FormGroup
-  constructor(private authService:AuthenticationService,private router:Router) { }
+  constructor(private authService:AuthenticationService,private router:Router,private cookieService: CookieService) { }
   ngOnInit(): void {
   this.loginForm=this.authService.createLoginForm()
   }
@@ -29,7 +30,10 @@ export class LoginComponent implements OnInit {
           console.log('responseLogin',responseLogin)
           alert(`Welcome ${responseLogin.firstName}`);
           this.router.navigate(['main'])
+          /* set token in localStorage */
           localStorage.setItem('token',JSON.stringify({token:responseLogin.token,id:responseLogin.id}))
+          /* set token in cookie */
+          this.cookieService.set('token', JSON.stringify({token:responseLogin.token,id:responseLogin.id}));
         },
         error:(err)=>{
           console.log('err',err)
