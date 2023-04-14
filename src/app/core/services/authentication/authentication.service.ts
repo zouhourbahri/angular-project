@@ -16,7 +16,7 @@ export class AuthenticationService {
     return this.formBuilder.group({
       // email:new FormControl(null, [Validators.required, Validators.pattern(emailPattern)]),
       username:new FormControl(null, [Validators.required]),
-      password:new FormControl(null, [Validators.required,Validators.maxLength(8),Validators.minLength(8)])
+      password:new FormControl(null, [Validators.required,Validators.maxLength(8)])/* ,Validators.minLength(8) */
     })
   }
   login(body:User):Observable<any>{

@@ -4,6 +4,7 @@ import { MatDialog, MatDialogRef } from '@angular/material/dialog';
 import { IPosts } from 'src/app/core/modeles/posts';
 import { PostsServiceService } from 'src/app/core/services/posts-service/posts-service.service';
 import { Subject } from 'rxjs';
+import { IDataStorage } from 'src/app/core/modeles/user';
 @Component({
   selector: 'app-posts-list',
   templateUrl: './posts-list.component.html',
@@ -26,6 +27,8 @@ export class PostsListComponent implements OnInit {
     modalTitle:string=""
     modalDescription:string=""
     selectedElementIndex:number=0
+    /*  */
+    dataStorage!:IDataStorage
     ngOnInit(): void {
       this.postsService.getListPosts().subscribe({
         next:res=>{
@@ -38,6 +41,11 @@ export class PostsListComponent implements OnInit {
   
         }
       })
+      /* get data from localStorage */
+      let data =JSON.parse(JSON.stringify(localStorage.getItem('token')))
+      this.dataStorage=JSON.parse(data)
+      
+      
     }
   
     ngAfterViewInit() {

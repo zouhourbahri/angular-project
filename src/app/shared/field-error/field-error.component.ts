@@ -1,5 +1,5 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { FormControl } from '@angular/forms';
+import { AbstractControl } from '@angular/forms';
 
 @Component({
   selector: 'app-field-error',
@@ -7,7 +7,7 @@ import { FormControl } from '@angular/forms';
   styleUrls: ['./field-error.component.scss']
 })
 export class FieldErrorComponent implements OnInit {
-@Input() control!:FormControl
+@Input() control!:AbstractControl | null
   constructor() { }
 
   ngOnInit(): void {
