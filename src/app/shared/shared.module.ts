@@ -5,6 +5,7 @@ import { MatTableModule } from '@angular/material/table';
 import { DeleteTemplateComponent } from './delete-template/delete-template.component';
 import { SharedTableComponent } from './shared-table/shared-table.component';
 import { FieldErrorComponent } from './field-error/field-error.component';
+import { ToastrComponent } from './toastr/toastr.component';
 
 
 
@@ -13,7 +14,8 @@ import { FieldErrorComponent } from './field-error/field-error.component';
     DeleteTemplateComponent,
     ConfirmationTemplateComponent,
     SharedTableComponent,
-    FieldErrorComponent
+    FieldErrorComponent,
+    ToastrComponent
   ],
   imports: [
     CommonModule,MatTableModule

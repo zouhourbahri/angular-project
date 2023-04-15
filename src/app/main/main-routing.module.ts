@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { MainComponent } from './main.component';
 import { PostsListComponent } from './posts-list/posts-list.component';
+import { PostsGuardGuard } from './../core/guards/posts-guard.guard';
 
 const routes: Routes = [
   {
@@ -15,7 +16,8 @@ const routes: Routes = [
       },
       {
         path: "posts-list",
-        component:PostsListComponent
+        component:PostsListComponent,
+        canActivate:[PostsGuardGuard]
       },
     ]
 
@@ -24,6 +26,6 @@ const routes: Routes = [
 
 @NgModule({
   imports: [RouterModule.forChild(routes)],
-  exports: [RouterModule]
+exports: [RouterModule]
 })
 export class MainRoutingModule { }
