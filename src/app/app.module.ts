@@ -10,13 +10,11 @@ import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
 import {MatPaginatorModule} from '@angular/material/paginator';
 // import { ComponentsModule } from './components/components.module';
 import { AppRoutingModule } from "./app-routing.module";
-import { NavbarComponent } from './layout/navbar/navbar.component';
 // import {MatIconModule} from '@angular/material/icon';
 import { CookieService } from 'ngx-cookie-service';
 @NgModule({
   declarations: [
     AppComponent,
-    NavbarComponent,
   ],
   imports: [
     BrowserModule,
