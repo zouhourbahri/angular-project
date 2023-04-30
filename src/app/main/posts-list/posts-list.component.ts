@@ -3,9 +3,11 @@ import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms'
 import { MatDialog, MatDialogRef } from '@angular/material/dialog';
 import { IPosts } from 'src/app/core/modeles/posts';
 import { PostsServiceService } from 'src/app/core/services/posts-service/posts-service.service';
-import { Subject } from 'rxjs';
+import { Subject, takeUntil } from 'rxjs';
 import { IDataStorage } from 'src/app/core/modeles/user';
 import { CookieService } from 'ngx-cookie-service';
+import { log } from 'console';
+import { BehaviorSubjectService } from 'src/app/core/services/behaviorSubject/behavior-subject.service';
 @Component({
   selector: 'app-posts-list',
   templateUrl: './posts-list.component.html',
@@ -22,8 +24,9 @@ export class PostsListComponent implements OnInit {
   displayedColumnsLabels: Array<string> = ['N°', 'Title', 'Description'];/* header of the table */
   displayedColumns: Array<string> = ['N°','title', 'body','actions'];/* body */
     constructor(private postsService:PostsServiceService, private dialog:MatDialog,
-       private formBuilder:FormBuilder,private cookieService:CookieService) { }
+       private formBuilder:FormBuilder,private cookieService:CookieService, private subjectBehavior:BehaviorSubjectService) { }
     @ViewChild('cancel')  cancel: any;
+    @ViewChild('modalAjout')  modalAjout: any;
     mode:string=""
     modalTitle:string=""
     modalDescription:string=""
@@ -48,6 +51,13 @@ export class PostsListComponent implements OnInit {
       /* get data from cookies */
       let cookieData =JSON.parse(JSON.stringify(this.cookieService.get('token')))
       console.log('cookieData',JSON.parse(cookieData) );
+      this.subjectBehavior.getAjoutPost().pipe(takeUntil(this.unsubscribeAll)).subscribe({
+        next:res=>{
+          if(res){
+            this.openModalAjout(this.modalAjout)
+          }
+        } 
+      })
     }
   
     ngAfterViewInit() {
@@ -142,4 +152,5 @@ export class PostsListComponent implements OnInit {
   ngOnDestroy():void{
   
   }
-}
+  
+} 

@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { BehaviorSubjectService } from 'src/app/core/services/behaviorSubject/behavior-subject.service';
 
 @Component({
   selector: 'app-nav-bar',
@@ -7,9 +8,13 @@ import { Component, OnInit } from '@angular/core';
 })
 export class NavBarComponent implements OnInit {
 
-  constructor() { }
+  constructor( private bhSubject:BehaviorSubjectService) { }
 
   ngOnInit(): void {
+    console.log('hello');
+  }
+  ajoutModal(){
+    this.bhSubject.setAjoutPost(true)
   }
 
 }
